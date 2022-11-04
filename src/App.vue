@@ -5,7 +5,7 @@
     <button @click="sendMessage()">send</button>
     <button @click="increment()">increment</button>
     <h2> {{ count }} </h2>
-    <li v-for="item in cards" :key="item.id">
+    <li v-for="item in tickets" :key="item.id">
       {{ item.id }}
     </li>
   </div>
@@ -14,13 +14,15 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import EventService from './service/events'
 // import Stomp from '@stomp/stompjs'
 
-var Stomp = require('@stomp/stompjs');
+// var Stomp = require('@stomp/stompjs');
 
-var client = null
-var sub1 = null;
-var sub2 = null;
+// var client = null
+// var sub1 = null;
+// var sub2 = null;
+var es = null;
 
 export default {
   name: 'App',
@@ -36,69 +38,18 @@ export default {
     count () {
       return this.$store.state.count
     },
+    tickets () {
+      return this.$store.state.tickets
+    },
   },
-  // count () {
-  //   return this.$store.state.count
-  // },
   created: function() {
-
-   client  = new Stomp.Client({
-      brokerURL: 'ws://localhost:8080/ws/websocket',
-      debug: function (str) {
-        console.log(str);
-      },
-      reconnectDelay: 5000,
-      heartbeatIncoming: 4000,
-      heartbeatOutgoing: 4000,
-    });
-
-    client.onConnect = () =>{
-      // Do something, all subscribes must be done is this callback
-      // This is needed because this will be executed after a (re)connect
-      sub1 = console.log("Called onConnect")
-      client.subscribe('/topic/messages', message => {
-        console.log('rcv!!!')
-        var body = JSON.parse(message.body);
-        console.log(body)
-        console.log(this.cards )
-        this.cards.push(body)
-      });
-      sub1 = client.subscribe('/app/messages', message => {
-        console.log('rcv!!!')
-        console.log(message)
-      });
-      console.log(sub1)
-      console.log(sub2)
-
-    };
-
-    client.onStompError = function (frame) {
-      // Will be invoked in case of error encountered at Broker
-      // Bad login/passcode typically will cause an error
-      // Complaint brokers will set `message` header with a brief message. Body may contain details.
-      // Compliant brokers will terminate the connection after any error
-      console.log('Broker reported error: ' + frame.headers['message']);
-      console.log('Additional details: ' + frame.body);
-    };
-
-    client.activate();
-
-
-    // var stompClient = null;
-    // stompClient = Stomp.client('ws://127.0.0.1:8080/ws');
-    // stompClient.connect({}, function (frame) {
-    //     console.log('Connected: ' + frame);
-    //     stompClient.subscribe('/topic/messages', function (greeting) {
-    //       console.log("rcv")
-    //       console.log("greeting: " + greeting)
-    //     });
-    // });
-
+    es = new EventService();
+    es.connect()
   },
   methods:{
     sendMessage(){
       console.log('sending stuff')
-      client.publish({ destination: '/app/hello', body: 'Hello world' });
+      // client.publish({ destination: '/app/hello', body: 'Hello world' });
     },
     increment() {
       this.$store.commit('increment')
