@@ -3,7 +3,8 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button @click="sendMessage()">send</button>
-
+    <button @click="increment()">increment</button>
+    <h2> {{ count }} </h2>
     <li v-for="item in cards" :key="item.id">
       {{ item.id }}
     </li>
@@ -31,6 +32,14 @@ export default {
       cards: []
     }
   },
+  computed: {
+    count () {
+      return this.$store.state.count
+    },
+  },
+  // count () {
+  //   return this.$store.state.count
+  // },
   created: function() {
 
    client  = new Stomp.Client({
@@ -90,6 +99,10 @@ export default {
     sendMessage(){
       console.log('sending stuff')
       client.publish({ destination: '/app/hello', body: 'Hello world' });
+    },
+    increment() {
+      this.$store.commit('increment')
+      console.log(this.$store.state.count)
     }
   }
 
