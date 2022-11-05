@@ -29,17 +29,21 @@ export default class EventService {
             // Do something, all subscribes must be done is this callback
             // This is needed because this will be executed after a (re)connect
             console.log("Called onConnect")
-            sub1 = client.subscribe('/app/issued', message => {
+            sub1 = client.subscribe('/topic/issued', message => {
                 console.log('rcv issued')
                 var body = JSON.parse(message.body);
                 console.log(body)
                 console.log(this.cards )
                 // this.cards.push(body)
+                store.commit('appendTicket', {
+                    "id": body.id,
+                    "value": body.value
+                })
 
             });
 
 
-            sub2 = client.subscribe('/app/redeemed', message => {
+            sub2 = client.subscribe('/topic/redeemed', message => {
                 console.log('rcv redeemed')
                 console.log(message)
             });
