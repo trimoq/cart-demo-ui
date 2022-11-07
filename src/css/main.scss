@@ -1,0 +1,6 @@
+
+// @import "node_modules/vuetify/styles.scss";
+
+@use 'node_modules/vuetify/_styles.scss' with (
+  $overlay-opacity: 80%,
+);
