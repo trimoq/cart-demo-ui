@@ -40,6 +40,17 @@
             </tbody>
             </v-table>
         </div>
+        <template v-slot:append>
+          <div class="pa-2">
+            <v-btn 
+                block 
+                color="error"             
+                @click="onClickClear"
+            >
+              Clear
+            </v-btn>
+          </div>
+        </template>
     </v-navigation-drawer>
 </template>
 
@@ -78,6 +89,11 @@ export default {
       this.snackbarText=mutation.payload
       this.snackbar=true
     })
+  },
+  methods:{
+    onClickClear(){
+        this.$store.commit('resetEvents')
+    }
   }
 }
 </script>

@@ -28,6 +28,9 @@ const store = createStore({
         state.cartItems = []
         state.cartId = null
         state.checkedOut = false
+      },
+      resetEvents(state){
+        state.events = []
       }
     },
     actions: {
