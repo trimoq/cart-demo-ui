@@ -4,7 +4,6 @@ const axios = require('axios');
 const store = createStore({
     state () {
       return {
-        count: 0,
         cartId: null,
         events: [],
         cartItems: [],
@@ -12,12 +11,6 @@ const store = createStore({
       }
     },
     mutations: {
-      increment (state) {
-        state.count++
-      },
-      // appendTicket (state, ticket) {
-      //   state.tickets.push(ticket)
-      // },
       logEvent(state, event) {
         state.events.push(event)
       },
@@ -30,6 +23,11 @@ const store = createStore({
       updateCart(state, cart){
         state.cartItems = cart.items
         state.checkedOut = cart.checkedOut
+      },
+      reset(state){
+        state.cartItems = []
+        state.cartId = null
+        state.checkedOut = false
       }
     },
     actions: {

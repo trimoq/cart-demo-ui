@@ -18,14 +18,7 @@
                 {{ item.name }}
                 </v-card-title>
                 <v-card-actions>
-                    <!-- <v-btn
-                    variant="outlined"
-                    color="primary">
-                        Add
-                    </v-btn> -->
-
                     <v-spacer></v-spacer>
-
                     <v-btn
                     variant="outlined"
                     color="primary"

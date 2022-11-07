@@ -5,14 +5,6 @@
         permanent
         location="right"
     >
-        <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-        <!-- <v-btn @click="sendMessage()">send</v-btn>
-        <v-btn @click="increment()">increment</v-btn> -->
-        <!-- <v-btn
-            @click="snackbar = true"
-        >
-            Open Snackbar
-        </v-btn> -->
         <v-snackbar
             v-model="snackbar"
             :timeout="1000"
@@ -20,20 +12,8 @@
             {{ snackbarText }}
 
             <template v-slot:actions>
-            <!-- <v-btn
-                color="pink"
-                variant="text"
-                @click="snackbar = false"
-            >
-                Close
-            </v-btn> -->
             </template>
         </v-snackbar>
-
-        <!-- <h2> {{ count }} </h2>
-        <li v-for="item in tickets" :key="item.id">
-            {{ item.id }}
-        </li> -->
         <div class="d-flex justify-space-around">
             <v-table
             class="d-flex"
@@ -65,15 +45,7 @@
 
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import EventService from '../service/events'
-// import Stomp from '@stomp/stompjs'
-
-// var Stomp = require('@stomp/stompjs');
-
-// var client = null
-// var sub1 = null;
-// var sub2 = null;
 var es = null;
 
 export default {
@@ -101,25 +73,12 @@ export default {
   created: function() {
     es = new EventService();
     es.connect()
-
     this.$store.subscribe((mutation) => {
-    //   console.log(mutation.type)
       console.log(mutation.payload)
       this.snackbarText=mutation.payload
       this.snackbar=true
     })
-  },
-  methods:{
-    sendMessage(){
-      console.log('sending stuff')
-      // client.publish({ destination: '/app/hello', body: 'Hello world' });
-    },
-    increment() {
-      this.$store.commit('increment')
-      console.log(this.$store.state.count)
-    }
   }
-
 }
 </script>
 
