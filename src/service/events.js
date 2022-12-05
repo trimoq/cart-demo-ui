@@ -26,10 +26,11 @@ export default class EventService {
                 if(event.id===store.state.cartId){
                     store.commit('updateCart', event)
                 }
-                else{
-                    console.log("Ignoring cart update")
-                }
-            });    
+            });   
+            client.subscribe('/topic/stats', message => {
+                var removals = JSON.parse(message.body);
+                store.commit('replaceRemovalModel', removals)
+            });   
         };
     
         client.onStompError = function (frame) {

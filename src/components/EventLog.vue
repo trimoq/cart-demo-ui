@@ -34,7 +34,7 @@
                         <span v-if="item.eventType === 'CartCreatedEvent'" class="text-primary"> {{ item.eventType }}</span>
                         <span v-else-if="item.eventType === 'ItemAddedEvent'" class="text-success"> {{ item.eventType }} </span>
                         <span v-else-if="item.eventType === 'ItemRemovedEvent'" class="text-error"> {{ item.eventType }} </span>
-                        <span v-else class="text-secondary"> {{ item.eventType }} </span>
+                        <span v-else class="text-warning"> {{ item.eventType }} </span>
                     </td>
                 </tr>
             </tbody>
@@ -47,7 +47,7 @@
                 color="error"             
                 @click="onClickClear"
             >
-              Clear
+              Clear UI
             </v-btn>
           </div>
         </template>
@@ -84,11 +84,11 @@ export default {
   created: function() {
     es = new EventService();
     es.connect()
-    this.$store.subscribe((mutation) => {
-      console.log(mutation.payload)
-      this.snackbarText=mutation.payload
-      this.snackbar=true
-    })
+    // this.$store.subscribe((mutation) => {
+    //   console.log(mutation.payload)
+    //   this.snackbarText=mutation.payload
+    //   this.snackbar=true
+    // })
   },
   methods:{
     onClickClear(){

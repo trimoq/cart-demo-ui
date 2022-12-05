@@ -1,20 +1,25 @@
 <template>
      <v-app>
-      <ShoppingCart />
 
-      <v-main>
-        <ShopPanel />
-      </v-main>
+
+      <ShoppingCart />
 
       <EventLog/>
 
+      <StoryHeader />
+
+      <v-main class="less-border">
+        <ShopPanel />
+      </v-main>
+
+
       <v-overlay 
         v-model="overlay" 
-        class="align-center justify-center"
+        class="align-center justify-center more-overlay"
         persistent
         >
           <v-btn
-            color="success"
+            color="primary"
             @click="onStartShopping"
           >
             Start shopping
@@ -62,6 +67,7 @@
 import EventLog from './components/EventLog.vue'
 import ShoppingCart from './components/ShoppingCart.vue'
 import ShopPanel from './components/ShopPanel.vue'
+import StoryHeader from './components/StoryHeader.vue'
 import products from "./assets/products"
 
 export default {
@@ -69,7 +75,8 @@ export default {
   components: {
     EventLog,
     ShoppingCart,
-    ShopPanel
+    ShopPanel,
+    StoryHeader
   },
   data(){
     return {
@@ -109,8 +116,11 @@ export default {
 }
 </script>
 
-<style lang="css">
-  .v-overlay__scrim{
-    opacity: 80%;
-  }
+<style scoped lang="css">
+.less-border {
+	--v-layout-left: 256px;
+	--v-layout-right: 256px;
+	--v-layout-top: 0px !important;
+	--v-layout-bottom: 0px;
+}
 </style>

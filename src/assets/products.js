@@ -1,83 +1,38 @@
 const products = [
     {
         id: '0',
-        name: 'Plant',
-        image: '/products/plant.jpg'
+        name: 'Beanie',
+        image: '/products/Beanie.png'
     },
     {
         id: '1',
-        name: 'Watch',
-        image: '/products/watch.jpg'
+        name: 'Becher',
+        image: '/products/Bambus_Becher.png'
     },
     {
         id: '2',
-        name: 'Shoe',
-        image: '/products/shoe.jpg'
+        name: 'Bier',
+        image: '/products/Bier_Dose.png'
     },
     {
         id: '3',
-        name: 'Headphones',
-        image: '/products/headphones.jpg'
+        name: 'Hoodie',
+        image: '/products/Hoodie.png'
     },
     {
         id: '4',
-        name: 'Camera',
-        image: '/products/camera.jpg'
+        name: 'Polo',
+        image: '/products/Polo_Shirt.png'
     },
     {
         id: '5',
-        name: 'Coffee',
-        image: '/products/coffee.jpg'
+        name: 'Sticker',
+        image: '/products/Sticker_Set.png'
     },
     {
         id: '6',
-        name: 'Cup',
-        image: '/products/cup.jpg'
-    },
-    {
-        id: '7',
-        name: 'Bike',
-        image: '/products/bike.jpg'
-    },
-    {
-        id: '8',
-        name: 'Bag',
-        image: '/products/bag.jpg'
-    },
-    {
-        id: '9',
-        name: 'Banana',
-        image: '/products/banana.jpg'
-    },
-    {
-        id: '10',
-        name: 'Car',
-        image: '/products/car.jpg'
-    },
-    {
-        id: '11',
-        name: 'Drink',
-        image: '/products/drink.jpg'
-    },
-    {
-        id: '12',
-        name: 'Backpack',
-        image: '/products/backpack.jpg'
-    },
-    {
-        id: '13',
-        name: 'Cylinder',
-        image: '/products/cylinder.jpg'
-    },
-    {
-        id: '14',
-        name: 'Cupcake',
-        image: '/products/cupcake.jpg'
-    },
-    {
-        id: '15',
-        name: 'Glasses',
-        image: '/products/glasses.jpg'
+        name: 'Cube',
+        image: '/products/Stress_Cube.png'
     },
 ];
 

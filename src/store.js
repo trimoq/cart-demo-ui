@@ -7,7 +7,9 @@ const store = createStore({
         cartId: null,
         events: [],
         cartItems: [],
-        checkedOut: false
+        checkedOut: false,
+        showRemovals: false,
+        removalModel: {}
       }
     },
     mutations: {
@@ -17,9 +19,6 @@ const store = createStore({
       createCart(state, cartId){
         state.cartId = cartId
       },
-      // addItem(state, item){
-      //   state.cartItems.push(item)
-      // },
       updateCart(state, cart){
         state.cartItems = cart.items
         state.checkedOut = cart.checkedOut
@@ -31,6 +30,12 @@ const store = createStore({
       },
       resetEvents(state){
         state.events = []
+      },
+      setShowremovals(state,value){
+        state.showRemovals=value
+      },
+      replaceRemovalModel(state,value){
+        state.removalModel = value
       }
     },
     actions: {
@@ -69,6 +74,21 @@ const store = createStore({
         try {
           await axios.post('http://127.0.0.1:8080/cart/'+this.state.cartId+'/checkout/')
           // commit('addItem', item);
+        } catch (error) {
+          console.log(commit, error.response.body);
+        } 
+      },
+      async resetProjections ({commit}) {
+        try {
+          await axios.post('http://127.0.0.1:8080/reset/projections')
+        } catch (error) {
+          console.log(commit, error.response.body);
+        } 
+      },
+      async resetRemovals ({commit}) {
+        try {
+          await axios.post('http://127.0.0.1:8080/reset/stats')
+          commit('setShowremovals', true)
         } catch (error) {
           console.log(commit, error.response.body);
         } 

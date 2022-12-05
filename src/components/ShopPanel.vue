@@ -1,8 +1,8 @@
 <template>
     <v-container>
-        <h2>
-        placeholder
-    </h2>
+    <!-- <h2>
+        Axoniq Merch Store
+    </h2> -->
 
     <v-row>
         <v-col v-for='item in items' :key='item.name'>
@@ -18,6 +18,10 @@
                 {{ item.name }}
                 </v-card-title>
                 <v-card-actions>
+                    <v-chip
+                    v-if="showRemovals">
+                        {{ getremovalsFor(item.id) }}
+                    </v-chip>
                     <v-spacer></v-spacer>
                     <v-btn
                     variant="outlined"
@@ -49,6 +53,9 @@ export default {
  computed: {
     items(){
         return products
+    },
+    showRemovals() {
+        return this.$store.state.showRemovals
     }
  },
  created: function() {
@@ -63,6 +70,15 @@ export default {
         console.log("AddItem "+ this.$store.state.cartId)
       })
         console.log("Adding item to cart:" + item.name)        
+    },
+    getremovalsFor(itemId){
+        let removalModelEntry = this.$store.state.removalModel[itemId]
+        if(removalModelEntry){
+            return removalModelEntry.removals
+        }
+        else{
+            return 0
+        }
     }
  }
 
